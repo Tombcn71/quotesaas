@@ -37,14 +37,14 @@ export default function Home() {
               <a href="#features" className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
                 Features
               </a>
-              <a href="/login">
+              <a href="/demo">
                 <Button variant="outline" className="text-sm">
-                  Sign In
+                  Try Demo
                 </Button>
               </a>
-              <a href="/simple-signup">
+              <a href="/demo">
                 <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm">
-                  Start Free Trial
+                  Get Started Free
                 </Button>
               </a>
             </div>
@@ -77,7 +77,7 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <a href="/simple-signup">
+              <a href="/demo">
                 <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-6 text-lg hover:shadow-xl transition-shadow">
                   Start Free Trial
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -245,7 +245,7 @@ export default function Home() {
                   <span>Email support</span>
                 </li>
               </ul>
-              <a href="/simple-signup" className="w-full">
+              <a href="/demo" className="w-full">
                 <Button className="w-full" variant="outline">
                   Start Free Trial
                 </Button>
@@ -284,7 +284,7 @@ export default function Home() {
                   <span>A/B testing</span>
                 </li>
               </ul>
-              <a href="/simple-signup" className="w-full">
+              <a href="/demo" className="w-full">
                 <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
                   Start Free Trial
                 </Button>
@@ -340,7 +340,7 @@ export default function Home() {
             Join 500+ companies using AI to collect more leads
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/simple-signup">
+            <a href="/demo">
               <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-6 text-lg">
                 Start Free Trial
                 <ArrowRight className="w-5 h-5 ml-2" />
