@@ -1,0 +1,22 @@
+# 🚀 Push naar GitHub - Kopieer en Plak Deze Commando's
+
+# Stap 1: Ga naar project directory
+cd /Users/tom/Desktop/kozijnsaas
+
+# Stap 2: Voeg GitHub remote toe
+git remote add origin https://github.com/Tombcn71/quotesaas.git
+
+# Stap 3: Stage alle changes
+git add .
+
+# Stap 4: Commit
+git commit -m "Add SaaS platform with Supabase"
+
+# Stap 5: Push naar GitHub
+git push -u origin main
+
+# KLAAR! ✅
+# Nu ga je naar: https://vercel.com/new
+# Import: Tombcn71/quotesaas
+# Deploy!
+
