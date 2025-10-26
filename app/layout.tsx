@@ -7,29 +7,28 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Budget Kozijnenshop - Nieuwe Raamkozijnen voor de Laagste Prijs",
+  title: "QuoteSaaS - AI-Powered Quote Forms in 3 Lines of Code",
   description:
-    "Vindt u een goedkopere offerte? Wij betalen u het verschil terug. Direct een prijsindicatie met AI en preview van uw nieuwe kozijnen.",
-  generator: "v0.app",
-  keywords: "raamkozijnen, kunststof kozijnen, houten kozijnen, aluminium kozijnen, kozijn plaatsen, kozijn prijzen, kunststof ramen",
-  authors: [{ name: "Budget Kozijnenshop" }],
+    "Generate instant quotes with AI photo analysis. Embeddable widget for your website. No complex integrations. Start collecting leads in minutes.",
+  keywords: "AI quote form, embedded widget, lead generation, AI photo analysis, instant quotes, SaaS quote tool, form builder, conversion optimization",
+  authors: [{ name: "QuoteSaaS" }],
   viewport: {
     width: 'device-width',
     initialScale: 1,
     maximumScale: 5,
   },
   openGraph: {
-    title: "Budget Kozijnenshop - Nieuwe Raamkozijnen voor de Laagste Prijs",
-    description: "Vindt u een goedkopere offerte? Wij betalen u het verschil terug. Direct een prijsindicatie met AI.",
-    url: "https://budgetkozijnenshop.nl",
-    siteName: "Budget Kozijnenshop",
-    locale: "nl_NL",
+    title: "QuoteSaaS - AI-Powered Quote Forms",
+    description: "Generate instant quotes with AI photo analysis. Embed in 3 lines of code.",
+    url: "https://quotesaas.com",
+    siteName: "QuoteSaaS",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Budget Kozijnenshop - Nieuwe Raamkozijnen voor de Laagste Prijs",
-    description: "Vindt u een goedkopere offerte? Wij betalen u het verschil terug.",
+    title: "QuoteSaaS - AI-Powered Quote Forms",
+    description: "Generate instant quotes with AI photo analysis. Embed in 3 lines of code.",
   },
   robots: {
     index: true,
@@ -50,32 +49,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="nl">
-      <head>
-        <link rel="preconnect" href="https://images.pexels.com" />
-        <link rel="preconnect" href="https://assets.calendly.com" />
-        <link rel="dns-prefetch" href="https://assets.calendly.com" />
-      </head>
+    <html lang="en">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
-        <script 
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.addEventListener('load', function() {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = 'https://assets.calendly.com/assets/external/widget.css';
-                document.head.appendChild(link);
-                
-                var script = document.createElement('script');
-                script.src = 'https://assets.calendly.com/assets/external/widget.js';
-                script.async = true;
-                document.body.appendChild(script);
-              });
-            `
-          }}
-        />
       </body>
     </html>
   )
