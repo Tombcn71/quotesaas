@@ -1,6 +1,6 @@
 'use client'
 
-import AIQuoteForm from '@/components/ai-quote-form'
+import { AIQuoteForm } from '@/components/ai-quote-form'
 
 export default function DemoPage() {
   return (
