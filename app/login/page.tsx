@@ -53,11 +53,11 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-md p-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">
-            KozijnSaaS
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+            QuoteSaaS
           </h1>
           <p className="text-muted-foreground">
-            Log in op je dashboard
+            Sign in to your dashboard
           </p>
         </div>
 
@@ -70,11 +70,11 @@ export default function LoginPage() {
 
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <Label htmlFor="email">E-mailadres</Label>
+            <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               type="email"
-              placeholder="jouw@email.nl"
+              placeholder="you@company.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -84,7 +84,7 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <Label htmlFor="password">Wachtwoord</Label>
+            <Label htmlFor="password">Password</Label>
             <Input
               id="password"
               type="password"
@@ -105,33 +105,24 @@ export default function LoginPage() {
             {loading ? (
               <>
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Inloggen...
+                Signing in...
               </>
             ) : (
-              'Inloggen'
+              'Sign In'
             )}
           </Button>
         </form>
 
-        <div className="mt-6 text-center space-y-2">
-          <a 
-            href="/forgot-password" 
-            className="text-sm text-blue-600 hover:text-blue-700"
-          >
-            Wachtwoord vergeten?
-          </a>
-          
-          <div className="pt-4 border-t border-border">
-            <p className="text-sm text-muted-foreground mb-2">
-              Nog geen account?
-            </p>
+        <div className="mt-6 text-center">
+          <p className="text-sm text-muted-foreground">
+            Don't have an account?{' '}
             <a 
               href="/signup" 
-              className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+              className="text-blue-600 hover:text-blue-700 font-medium"
             >
-              Start gratis trial →
+              Start free trial
             </a>
-          </div>
+          </p>
         </div>
       </Card>
     </div>
