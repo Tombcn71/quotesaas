@@ -57,24 +57,22 @@ export default function SimpleSignup() {
       if (userError) throw userError
       console.log('User linked to company')
 
-      // 4. Wacht even en refresh session
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      const { data: { session }, error: sessionError } = await supabase.auth.getSession()
-      console.log('Session check:', { session: !!session, sessionError })
-      
-      if (session) {
-        // Ingelogd - redirect naar dashboard
-        console.log('✅ Session active, redirecting to dashboard...')
-        setMessage('✅ Account aangemaakt! Redirecting...')
-        await new Promise(resolve => setTimeout(resolve, 500))
-        window.location.href = '/dashboard'
-      } else {
-        // Email verificatie nodig - redirect naar login
-        setMessage('✅ Account aangemaakt! Redirect naar login...')
-        await new Promise(resolve => setTimeout(resolve, 1000))
-        window.location.href = '/login'
+      // 4. Direct inloggen met de credentials
+      const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+
+      if (signInError) {
+        console.error('Login failed:', signInError)
+        setMessage('✅ Account aangemaakt! Ga naar login om in te loggen.')
+        setTimeout(() => window.location.href = '/login', 2000)
+        return
       }
+
+      console.log('✅ Logged in successfully, redirecting...')
+      setMessage('✅ Success! Redirecting...')
+      setTimeout(() => window.location.href = '/dashboard', 500)
 
     } catch (error: any) {
       setMessage('Error: ' + error.message)
