@@ -24,10 +24,19 @@ export default function SimpleSignup() {
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/dashboard`,
+        }
       })
 
       if (authError) throw authError
       if (!authData.user) throw new Error('No user returned')
+
+      // Check of email verificatie nodig is
+      if (authData.user.identities?.length === 0) {
+        setMessage('✅ Account aangemaakt! Check je email om te bevestigen.')
+        return
+      }
 
       // 2. Maak company aan met slug
       const slug = company.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -49,7 +58,10 @@ export default function SimpleSignup() {
         })
 
       // KLAAR - redirect
-      window.location.href = '/dashboard'
+      setMessage('✅ Account aangemaakt! Redirecting...')
+      setTimeout(() => {
+        window.location.href = '/dashboard'
+      }, 500)
 
     } catch (error: any) {
       setMessage('Error: ' + error.message)
@@ -96,7 +108,11 @@ export default function SimpleSignup() {
         </form>
 
         {message && (
-          <div className="p-4 bg-red-50 text-red-700 rounded">
+          <div className={`p-4 rounded ${
+            message.includes('✅') 
+              ? 'bg-green-50 text-green-700' 
+              : 'bg-red-50 text-red-700'
+          }`}>
             {message}
           </div>
         )}
