@@ -98,11 +98,8 @@ export default function SignupPage() {
 
         setSuccess(true)
         
-        // Redirect to dashboard after 2 seconds
-        setTimeout(() => {
-          router.push('/dashboard')
-          router.refresh()
-        }, 2000)
+        // Direct redirect to dashboard
+        window.location.href = '/dashboard'
       }
     } catch (err: any) {
       console.error('Signup error:', err)
