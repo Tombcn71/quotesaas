@@ -1,0 +1,84 @@
+# ==============================================
+# KozijnSaaS Environment Variables Template
+# ==============================================
+# Kopieer dit naar .env.local en vul de waarden in
+
+# ==============================================
+# SUPABASE (VERPLICHT VOOR SAAS)
+# ==============================================
+# 1. Ga naar https://supabase.com/dashboard
+# 2. Open je project → Settings → API
+# 3. Kopieer de waarden hieronder:
+
+NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxxxxxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.xxxxx...
+
+# ==============================================
+# GOOGLE GEMINI AI (VOOR KOZIJN PREVIEWS)
+# ==============================================
+# Deze heb je al, blijven hetzelfde:
+
+GOOGLE_AI_API_KEY=your-gemini-api-key-here
+GEMINI_API_KEY=your-gemini-api-key-here
+
+# ==============================================
+# OPENAI (OPTIONAL BACKUP)
+# ==============================================
+# Optional - voor analyse als backup:
+
+OPENAI_API_KEY=sk-xxxxx
+
+# ==============================================
+# VERCEL BLOB STORAGE (VOOR FOTO'S)
+# ==============================================
+# Deze heb je al:
+
+BLOB_READ_WRITE_TOKEN=vercel_blob_rw_xxxxx
+
+# ==============================================
+# APP URLS
+# ==============================================
+# Development:
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_WIDGET_URL=http://localhost:3000/widget
+
+# Production (update na deployment):
+# NEXT_PUBLIC_APP_URL=https://jouw-domein.nl
+# NEXT_PUBLIC_WIDGET_URL=https://jouw-domein.nl/widget
+
+# ==============================================
+# STRIPE (OPTIONAL - VOOR BILLING)
+# ==============================================
+# Later toevoegen voor subscription payments:
+
+# NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_xxxxx
+# STRIPE_SECRET_KEY=sk_test_xxxxx
+# STRIPE_WEBHOOK_SECRET=whsec_xxxxx
+
+# ==============================================
+# EMAIL (OPTIONAL - VOOR NOTIFICATIES)
+# ==============================================
+# Later toevoegen voor lead alerts:
+
+# RESEND_API_KEY=re_xxxxx
+# FROM_EMAIL=noreply@jouw-domein.nl
+
+# ==============================================
+# SETUP CHECKLIST
+# ==============================================
+# 
+# ✅ 1. Supabase project aangemaakt
+# ✅ 2. Database schema geïmporteerd (supabase/schema.sql)
+# ✅ 3. Supabase URL en keys hier ingevuld
+# ✅ 4. Gemini API key ingevuld
+# ✅ 5. Vercel Blob token ingevuld
+# ✅ 6. pnpm install uitgevoerd
+# ✅ 7. pnpm dev gestart
+# ✅ 8. http://localhost:3000 werkt
+# 
+# Volgende stappen:
+# - Maak test company in Supabase (zie SAAS_SETUP_GUIDE.md)
+# - Test login op /login
+# - Test dashboard op /dashboard
+# - Test widget op /widget/embed
+

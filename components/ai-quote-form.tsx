@@ -16,13 +16,15 @@ interface AIQuoteFormProps {
   className?: string
 }
 
-export function AIQuoteForm({ className = "" }: AIQuoteFormProps) {
+export function AIQuoteForm({ className = "", companyId }: AIQuoteFormProps & { companyId?: string }) {
   const [currentStep, setCurrentStep] = useState(1)
   const [photos, setPhotos] = useState<File[]>([])
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [analysisResults, setAnalysisResults] = useState<any[]>([])
   const [priceResult, setPriceResult] = useState<any>(null)
   const [enlargedImage, setEnlargedImage] = useState<string | null>(null)
+  const [isSavingLead, setIsSavingLead] = useState(false)
+  const [leadSaved, setLeadSaved] = useState(false)
 
   const [formData, setFormData] = useState({
     materiaal: "", // kunststof, hout, aluminium
@@ -42,6 +44,65 @@ export function AIQuoteForm({ className = "" }: AIQuoteFormProps) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' })
   }, [currentStep])
+
+  const handleSubmitLead = async () => {
+    if (!formData.naam || !formData.email) {
+      alert('Vul alstublieft uw naam en e-mail in')
+      return
+    }
+
+    setIsSavingLead(true)
+
+    try {
+      const photoUrls = analysisResults.map(r => r.url)
+      const previewUrls = analysisResults.map(r => r.previewUrl || r.url)
+
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          companyId: companyId || null,
+          naam: formData.naam,
+          email: formData.email,
+          telefoon: formData.telefoon,
+          materiaal: formData.materiaal,
+          kleur: formData.kleur,
+          kozijnType: formData.kozijnType,
+          glasType: formData.glasType,
+          aantalRamen: formData.aantalRamen,
+          vierkanteMeterRamen: formData.vierkanteMeterRamen,
+          montage: formData.montage,
+          afvoerOudeKozijnen: formData.afvoerOudeKozijnen,
+          quoteTotal: priceResult?.total || 0,
+          quoteBreakdown: priceResult?.breakdown || {},
+          photoUrls: photoUrls,
+          previewUrls: previewUrls,
+          source: companyId ? 'widget' : 'direct',
+          widgetReferrer: typeof window !== 'undefined' ? window.location.href : null,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Kon offerte niet verzenden')
+      }
+
+      setLeadSaved(true)
+      console.log('✅ Lead verzonden:', data.leadId)
+
+      // Toon succes bericht
+      setTimeout(() => {
+        alert('✅ Offerte verzonden! We nemen zo spoedig mogelijk contact met u op.')
+      }, 500)
+
+    } catch (error: any) {
+      console.error('❌ Lead verzenden mislukt:', error)
+      alert('Er ging iets mis bij het verzenden. Probeer het opnieuw of neem contact op.')
+    } finally {
+      setIsSavingLead(false)
+    }
+  }
 
   const handleShare = async (imageUrl: string, title: string) => {
     try {
@@ -648,8 +709,25 @@ export function AIQuoteForm({ className = "" }: AIQuoteFormProps) {
             />
           </div>
 
-          <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold h-12 text-base">
-            Bevestig Offerte & Plan Opname
+          <Button 
+            type="button"
+            onClick={handleSubmitLead}
+            disabled={!formData.naam || !formData.email || isSavingLead || leadSaved}
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold h-12 text-base disabled:opacity-50"
+          >
+            {isSavingLead ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Verzenden...
+              </>
+            ) : leadSaved ? (
+              <>
+                <Check className="w-4 h-4 mr-2" />
+                Verzonden! We nemen contact op
+              </>
+            ) : (
+              'Bevestig Offerte & Plan Opname'
+            )}
           </Button>
 
           <Button
@@ -659,6 +737,8 @@ export function AIQuoteForm({ className = "" }: AIQuoteFormProps) {
               setPhotos([])
               setAnalysisResults([])
               setPriceResult(null)
+              setLeadSaved(false)
+              setIsSavingLead(false)
               setFormData({
                 materiaal: "",
                 kleur: "",
