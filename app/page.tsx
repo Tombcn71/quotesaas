@@ -37,12 +37,16 @@ export default function Home() {
               <a href="#features" className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
                 Features
               </a>
-              <Button variant="outline" className="text-sm">
-                Sign In
-              </Button>
-              <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm">
-                Start Free Trial
-              </Button>
+              <a href="/login">
+                <Button variant="outline" className="text-sm">
+                  Sign In
+                </Button>
+              </a>
+              <a href="/login">
+                <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm">
+                  Start Free Trial
+                </Button>
+              </a>
             </div>
           </div>
         </div>
@@ -73,14 +77,18 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-6 text-lg hover:shadow-xl transition-shadow">
-                Start Free Trial
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button size="lg" variant="outline" className="px-8 py-6 text-lg border-2">
-                <Camera className="w-5 h-5 mr-2" />
-                View Demo
-              </Button>
+              <a href="/login">
+                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-6 text-lg hover:shadow-xl transition-shadow">
+                  Start Free Trial
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </a>
+              <a href="/">
+                <Button size="lg" variant="outline" className="px-8 py-6 text-lg border-2">
+                  <Camera className="w-5 h-5 mr-2" />
+                  View Demo
+                </Button>
+              </a>
             </div>
 
             {/* Code Example */}
@@ -237,9 +245,11 @@ export default function Home() {
                   <span>Email support</span>
                 </li>
               </ul>
-              <Button className="w-full" variant="outline">
-                Start Free Trial
-              </Button>
+              <a href="/login" className="w-full">
+                <Button className="w-full" variant="outline">
+                  Start Free Trial
+                </Button>
+              </a>
             </Card>
 
             {/* Pro */}
@@ -274,9 +284,11 @@ export default function Home() {
                   <span>A/B testing</span>
                 </li>
               </ul>
-              <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-                Start Free Trial
-              </Button>
+              <a href="/login" className="w-full">
+                <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+                  Start Free Trial
+                </Button>
+              </a>
             </Card>
 
             {/* Enterprise */}
@@ -308,9 +320,11 @@ export default function Home() {
                   <span>Custom integrations</span>
                 </li>
               </ul>
-              <Button className="w-full" variant="outline">
-                Contact Sales
-              </Button>
+              <a href="mailto:sales@quotesaas.com" className="w-full">
+                <Button className="w-full" variant="outline">
+                  Contact Sales
+                </Button>
+              </a>
             </Card>
           </div>
         </div>
@@ -326,13 +340,17 @@ export default function Home() {
             Join 500+ companies using AI to collect more leads
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-6 text-lg">
-              Start Free Trial
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
-            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 px-8 py-6 text-lg">
-              Schedule Demo
-            </Button>
+            <a href="/login">
+              <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-6 text-lg">
+                Start Free Trial
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </a>
+            <a href="mailto:demo@quotesaas.com">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 px-8 py-6 text-lg">
+                Schedule Demo
+              </Button>
+            </a>
           </div>
           <p className="text-sm text-blue-200 mt-6">
             No credit card required · 14-day free trial · Cancel anytime
