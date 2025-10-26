@@ -29,10 +29,11 @@ export default function SimpleSignup() {
       if (authError) throw authError
       if (!authData.user) throw new Error('No user returned')
 
-      // 2. Maak company aan
+      // 2. Maak company aan met slug
+      const slug = company.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
       const { data: companyData, error: companyError } = await supabase
         .from('companies')
-        .insert({ name: company, email })
+        .insert({ name: company, email, slug })
         .select()
         .single()
 
