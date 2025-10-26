@@ -32,11 +32,7 @@ export default function SimpleSignup() {
       if (authError) throw authError
       if (!authData.user) throw new Error('No user returned')
 
-      // Check of email verificatie nodig is
-      if (authData.user.identities?.length === 0) {
-        setMessage('✅ Account aangemaakt! Check je email om te bevestigen.')
-        return
-      }
+      console.log('User created:', authData.user.id)
 
       // 2. Maak company aan met slug
       const slug = company.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -47,9 +43,10 @@ export default function SimpleSignup() {
         .single()
 
       if (companyError) throw companyError
+      console.log('Company created:', companyData.id)
 
       // 3. Link user aan company
-      await supabase
+      const { error: userError } = await supabase
         .from('users')
         .insert({
           id: authData.user.id,
@@ -57,11 +54,20 @@ export default function SimpleSignup() {
           email,
         })
 
-      // KLAAR - redirect
-      setMessage('✅ Account aangemaakt! Redirecting...')
-      setTimeout(() => {
+      if (userError) throw userError
+      console.log('User linked to company')
+
+      // 4. Check of user is ingelogd (email verificatie uit?)
+      const { data: { session } } = await supabase.auth.getSession()
+      
+      if (session) {
+        // Ingelogd - redirect naar dashboard
+        console.log('Session active, redirecting...')
         window.location.href = '/dashboard'
-      }, 500)
+      } else {
+        // Email verificatie nodig
+        setMessage('✅ Account aangemaakt! Check je email om te bevestigen, dan kun je inloggen.')
+      }
 
     } catch (error: any) {
       setMessage('Error: ' + error.message)
